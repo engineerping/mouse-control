@@ -26,7 +26,7 @@ public class MouseShake {
         int mov = 1 ;
 
         while (true) {
-            //System.out.println("移动前: "+ pos.x + " " + pos.y); //调试专用
+            System.out.println("####\n移动前: "+ pos.x + " " + pos.y);
             //获取鼠标当前的坐标
             PointerInfo pos_info = MouseInfo.getPointerInfo();
             if (null != pos_info) {
@@ -46,15 +46,15 @@ public class MouseShake {
                     //鼠标向右下移动1 pixel
                     robot.mouseMove(pos.x + mov, pos.y + mov);
                     pos  = MouseInfo.getPointerInfo().getLocation();
-                    //System.out.println("颤抖前: " + pos.x + " " + pos.y); //调试专用
+                    System.out.println("抖动前: " + pos.x + " " + pos.y);
 
                     Thread.sleep(1000L);
 
                     //####start####注释掉以下3行，程序将让鼠标在屏幕画平行四边形 ####star##t##
                     // 1秒后, 鼠标鼠标向左上移动1 pixel
                     robot.mouseMove(pos.x - mov , pos.y - mov);
-                    //pos  = MouseInfo.getPointerInfo().getLocation(); //调试专用
-                    //System.out.println("颤抖后: " + pos.x + " " + pos.y); //调试专用
+                    pos  = MouseInfo.getPointerInfo().getLocation();
+                    System.out.println("抖动后: " + pos.x + " " + pos.y);
                     //####end####注释掉以上3行，程序将让鼠标在屏幕画平行四边形 ####end####
                 }
 
@@ -73,8 +73,21 @@ public class MouseShake {
 
             //将这个时间改成3000有助于看到更直观的效果，
             //注意改得太小将需要使用Windows资源管理器才能关闭程序，因为鼠标自己在不停地动
+            long interval = 3 * 60 *1000L; //3分钟
+            long mainParamInt = interval;
+            if (args != null && args.length >= 1) {
+                String mainParam = args[0];
+                mainParamInt = Long.parseLong(mainParam);
+            }
+            if (mainParamInt < 3000) {
+                interval = 3000;
+            } else if (mainParamInt > 10 * 60 * 1000){
+                interval = 10 * 60 * 1000;
+            } else {
+                interval = mainParamInt;
+            }
             //Thread.sleep(3000L); //调试专用
-            Thread.sleep(3 * 60_000L);
+            Thread.sleep(interval);
         }
     }
 
