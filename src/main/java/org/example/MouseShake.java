@@ -4,6 +4,7 @@ import java.awt.*;
 
 /**
  * 本程序实际模拟了鼠标抖动
+ * 如果注释掉line53 ~ line58,程序将指挥鼠标在屏幕上画平行四边形
  */
 public class MouseShake {
     public static void main(String[] args) throws Exception{
@@ -25,7 +26,7 @@ public class MouseShake {
         int mov = 1 ;
 
         while (true) {
-            System.out.println("移动前: "+ pos.x + " " + pos.y);
+            //System.out.println("移动前: "+ pos.x + " " + pos.y); //调试专用
             //获取鼠标当前的坐标
             PointerInfo pos_info = MouseInfo.getPointerInfo();
             if (null != pos_info) {
@@ -42,14 +43,19 @@ public class MouseShake {
                         mov = -1;
                     }
 
-                    //移动鼠标到新位置
+                    //鼠标向右下移动1 pixel
                     robot.mouseMove(pos.x + mov, pos.y + mov);
                     pos  = MouseInfo.getPointerInfo().getLocation();
-                    System.out.println("移动后: " + pos.x + " " + pos.y);
+                    //System.out.println("颤抖前: " + pos.x + " " + pos.y); //调试专用
 
-                    // 1秒后鼠标恢复到原来的位置
                     Thread.sleep(1000L);
+
+                    //####start####注释掉以下3行，程序将让鼠标在屏幕画平行四边形 ####star##t##
+                    // 1秒后, 鼠标鼠标向左上移动1 pixel
                     robot.mouseMove(pos.x - mov , pos.y - mov);
+                    //pos  = MouseInfo.getPointerInfo().getLocation(); //调试专用
+                    //System.out.println("颤抖后: " + pos.x + " " + pos.y); //调试专用
+                    //####end####注释掉以上3行，程序将让鼠标在屏幕画平行四边形 ####end####
                 }
 
                 //鼠标移动后，重新获取鼠标指针的坐标
@@ -65,7 +71,10 @@ public class MouseShake {
                 break;
             }
 
-            Thread.sleep(5 * 60_000L);
+            //将这个时间改成3000有助于看到更直观的效果，
+            //注意改得太小将需要使用Windows资源管理器才能关闭程序，因为鼠标自己在不停地动
+            //Thread.sleep(3000L); //调试专用
+            Thread.sleep(3 * 60_000L);
         }
     }
 
