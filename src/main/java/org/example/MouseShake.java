@@ -1,6 +1,10 @@
 package org.example;
 
 import java.awt.*;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 
 /**
  * 本程序实际模拟了鼠标抖动
@@ -18,7 +22,7 @@ public class MouseShake {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         final double width = screenSize.getWidth() -1d;
         final double height = screenSize.getHeight() -1d;
-        System.out.println("Screen size: " + width + "*" + height);
+        System.out.println("Screen size: " + width + " * " + height);
 
         Point pos  = MouseInfo.getPointerInfo().getLocation();
         int lastX = pos.x;
@@ -26,14 +30,14 @@ public class MouseShake {
         int mov = 1 ;
 
         while (true) {
-            System.out.println("####\n移动前: "+ pos.x + " " + pos.y);
+            System.out.println("原始坐标: "+ pos.x + " " + pos.y + " #时间:"
+                    + DateTimeFormatter.ofLocalizedTime(FormatStyle.MEDIUM).format(LocalDateTime.now(ZoneId.systemDefault())));
             //获取鼠标当前的坐标
             PointerInfo pos_info = MouseInfo.getPointerInfo();
             if (null != pos_info) {
                 pos = pos_info.getLocation();
                 //只对静止不动的鼠标进行操作
                 if ((pos.x == lastX) && (pos.y == lastY)) {
-                    System.out.println("moving!");
                     //假如鼠标到达屏幕左上角
                     if (pos.y <= 0 && pos.x <= 0) {
                         mov = 1;
@@ -45,16 +49,18 @@ public class MouseShake {
 
                     //鼠标向右下移动1 pixel
                     robot.mouseMove(pos.x + mov, pos.y + mov);
+                    Thread.sleep(500);
                     pos  = MouseInfo.getPointerInfo().getLocation();
-                    System.out.println("抖动前: " + pos.x + " " + pos.y);
+                    System.out.println("抖动到坐标: " + pos.x + " " + pos.y);
 
-                    Thread.sleep(1000L);
+                    Thread.sleep(500);
 
                     //####start####注释掉以下3行，程序将让鼠标在屏幕画平行四边形 ####star##t##
                     // 1秒后, 鼠标鼠标向左上移动1 pixel
                     robot.mouseMove(pos.x - mov , pos.y - mov);
+                    Thread.sleep(500);
                     pos  = MouseInfo.getPointerInfo().getLocation();
-                    System.out.println("抖动后: " + pos.x + " " + pos.y);
+                    System.out.println("恢复到坐标: " + pos.x + " " + pos.y);
                     //####end####注释掉以上3行，程序将让鼠标在屏幕画平行四边形 ####end####
                 }
 
@@ -86,8 +92,8 @@ public class MouseShake {
             } else {
                 interval = mainParamInt;
             }
-            //Thread.sleep(3000L); //调试专用
-            Thread.sleep(interval);
+            Thread.sleep(3000L); //调试专用
+//            Thread.sleep(interval);
         }
     }
 
