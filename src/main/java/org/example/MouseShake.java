@@ -9,6 +9,8 @@ import java.time.format.FormatStyle;
 /**
  * 本程序实际模拟了鼠标抖动
  * 如果注释掉line53 ~ line58,程序将指挥鼠标在屏幕上画平行四边形
+ * 
+ * @author gongchengship@163.com
  */
 public class MouseShake {
     public static void main(String[] args) throws Exception{
