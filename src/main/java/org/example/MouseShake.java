@@ -94,8 +94,8 @@ public class MouseShake {
             } else {
                 interval = mainParamInt;
             }
-            Thread.sleep(3000L); //调试专用
-//            Thread.sleep(interval);
+            // Thread.sleep(3000L); //调试专用
+            Thread.sleep(interval);
         }
     }
 
