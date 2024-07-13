@@ -1,5 +1,5 @@
 # mouse-control
-This free program can make your mouse shake at intervals. It is suitable for remote office staff who want to keep the computer from being locked screen at all times.
+This free program can make your mouse shake at intervals. It is suitable for those who want to keep the computer from being locked screen at all times.
 
 ### Note: Java 8 or later required
 
