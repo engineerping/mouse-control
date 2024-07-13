@@ -6,7 +6,7 @@
 ### 两种方式来运行该程序
 
 1. Windows 环境双击下面这个脚本，运行程序:  
-`bin/mouse-control-start.bat`
+`bin/mc-start.bat`
 
 2. Mac OS 环境,在 ./target/ 文件同级目录,运行如下 命令:
    下面的命令中最后的 10000 是指 10秒钟
