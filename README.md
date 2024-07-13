@@ -5,8 +5,9 @@ This free program can make your mouse shake at intervals. It is suitable for rem
 
 ### There are 2 ways to run this application
 
-1. For Windows OS: Click bin/start.bat to launch this application.
+1. For Windows OS: Click bin/mouse-control-start.bat to launch this application.
 
-2. For Mac OS, Change directory to the directory where ./target/ is in, then run following command
-java --classpath ./target/mouse-control-1.0.0.jar org.example.MouseShake 3000
+2. For Mac OS, Change the directory to the directory where ./target/ is in, then run the following command,
+   the 10000 in bellow command means 10 seconds.
+java --classpath ./target/mouse-control-1.0.0.jar org.example.MouseShake 10000
 
