@@ -6,7 +6,7 @@ This free program can make your mouse shake at intervals. It is suitable for tho
 ### There are 2 ways to run this application
 
 1. For Windows OS: Click the below script to launch this application.  
-   `bin/mouse-control-start.bat`
+   `bin/mc-start.bat`
 
 2. For Mac OS, Change the directory to the directory where ./target/ is in, then run the following command,  
    the 10000 in the below command means 10 seconds.  
